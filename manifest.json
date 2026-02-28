@@ -1,0 +1,18 @@
+{
+  "name": "Anxiety Free Chess",
+  "manifest_version": 3,
+  "version": "1.0",
+  "description": "A plugin which remove all numbers which denotes Elo or anything that could make you feel anxiety. Just play for fun. No more worrying. If you can't see it, then it doesnt exist *wink* *wink*",
+  "icons": {
+    "16": "images/chess-16.png",
+    "32": "images/chess-32.png",
+    "48": "images/chess-48.png",
+    "128": "images/chess-128.png"
+  },
+  "content_scripts": [
+    {
+      "js": ["script/content.js"],
+      "matches": ["https://www.chess.com/*"]
+    }
+  ]
+}
