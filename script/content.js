@@ -1,60 +1,41 @@
 function removeProfileStats() {
     const stats = document.querySelector('.stats-component');
     if (stats && stats.style.display !== 'none') {
-        console.log('Hiding stats component');
         stats.style.display = 'none';
     }
 }
 
 function removeGameHistoryPlayerElos() {
     const elos = document.querySelectorAll('[data-test-element="user-tagline-rating"]');
-    console.log("****elo", elos);
-    let hiddenCount = 0;
     elos.forEach(elo => {
         if (elo.style.display !== 'none') {
             elo.style.display = 'none';
-            hiddenCount++;
         }
     });
-    if (hiddenCount > 0) {
-        console.log(`Hidden ${hiddenCount} elo elements`);
-    }
 }
 
 function removeInGameRatings() {
     const ratings = document.querySelectorAll('.player-game-over-component');
     const ratings1 = document.querySelectorAll('[data-cy="user-tagline-rating"]');
-    console.log("ratings", ratings);
-    let hiddenCount = 0;
     ratings.forEach(rating => {
         if (rating.style.display !== 'none') {
             rating.style.display = 'none';
-            hiddenCount++;
         }
     });
     ratings1.forEach(rating => {
         if (rating.style.display !== 'none') {
             rating.style.display = 'none';
-            hiddenCount++;
         }
     });
-    if (hiddenCount > 0) {
-        console.log(`Hidden ${hiddenCount} rating elements`);
-    }
 }
 
 function removeHomeStats() {
     const homeStats = document.querySelectorAll('.stat-section-stats-section');
-    let hiddenCount = 0;
     homeStats.forEach(stat => {
         if (stat.style.display !== 'none') {
             stat.style.display = 'none';
-            hiddenCount++;
         }
     });
-    if (hiddenCount > 0) {
-        console.log(`Hidden ${hiddenCount} home stats elements`);
-    }
 }
 
 function removeChatRatings() {
