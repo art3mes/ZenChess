@@ -75,27 +75,75 @@ function removeChatRatings() {
     });
 }
 
+let settings = {
+    homepageToggle: true,
+    inGameToggle: true,
+    chatToggle: true,
+    profileToggle: true
+};
+
+function loadSettings(callback) {
+    if (typeof chrome !== 'undefined' && chrome.storage && chrome.storage.sync) {
+        chrome.storage.sync.get({
+            homepageToggle: true,
+            inGameToggle: true,
+            chatToggle: true,
+            profileToggle: true
+        }, (result) => {
+            settings = result;
+            if (callback) callback();
+        });
+    } else {
+        // Fallback or missing chrome API
+        if (callback) callback();
+    }
+}
+
+// Watch for settings changes from popup
+if (typeof chrome !== 'undefined' && chrome.storage && chrome.storage.onChanged) {
+    chrome.storage.onChanged.addListener((changes, namespace) => {
+        for (let [key, { oldValue, newValue }] of Object.entries(changes)) {
+            settings[key] = newValue;
+        }
+        hideAnxietyElements();
+    });
+}
+
 function hideAnxietyElements() {
-    removeProfileStats();
-    removeGameHistoryPlayerElos();
-    removeInGameRatings();
-    removeHomeStats();
-    removeChatRatings();
+    if (settings.profileToggle) {
+        removeProfileStats();
+        removeGameHistoryPlayerElos();
+    }
+    if (settings.inGameToggle) {
+        removeInGameRatings();
+    }
+    if (settings.homepageToggle) {
+        removeHomeStats();
+    }
+    if (settings.chatToggle) {
+        removeChatRatings();
+    }
+}
+
+function init() {
+    loadSettings(() => {
+        hideAnxietyElements();
+
+        // Watch for dynamically loaded content
+        const observer = new MutationObserver(() => {
+            hideAnxietyElements();
+        });
+
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+    });
 }
 
 // Run when DOM is ready
 if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', hideAnxietyElements);
+    document.addEventListener('DOMContentLoaded', init);
 } else {
-    hideAnxietyElements();
+    init();
 }
-
-// Watch for dynamically loaded content
-const observer = new MutationObserver(() => {
-    hideAnxietyElements();
-});
-
-observer.observe(document.body, {
-    childList: true,
-    subtree: true
-});

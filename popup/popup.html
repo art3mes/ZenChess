@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>ZenChess Settings</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="header">
+    <div class="logo">
+      <img src="../images/chess-48.png" alt="ZenChess Logo">
+      <h1>ZenChess</h1>
+    </div>
+    <div class="status">
+      <span class="status-indicator"></span>
+      <span id="status-text">Active & Defending</span>
+    </div>
+  </div>
+
+  <div class="subtitle">
+    Focus on the board. We'll handle the numbers.
+  </div>
+
+  <div class="settings-list">
+    <!-- Homepage Toggle -->
+    <div class="setting-item">
+      <div class="setting-info">
+        <h3>Homepage Stats</h3>
+        <p>Hide your Rapid, Blitz, and Bullet ratings on the main dashboard.</p>
+      </div>
+      <label class="switch">
+        <input type="checkbox" id="homepageToggle" checked>
+        <span class="slider round"></span>
+      </label>
+    </div>
+
+    <!-- In-Game Toggle -->
+    <div class="setting-item">
+      <div class="setting-info">
+        <h3>In-Game Ratings</h3>
+        <p>Hide your and your opponent's ratings while playing a match.</p>
+      </div>
+      <label class="switch">
+        <input type="checkbox" id="inGameToggle" checked>
+        <span class="slider round"></span>
+      </label>
+    </div>
+
+    <!-- Chat Toggle -->
+    <div class="setting-item">
+      <div class="setting-info">
+        <h3>Chat Messages</h3>
+        <p>Hide Elo points and win/loss rating predictions in the Game Chat.</p>
+      </div>
+      <label class="switch">
+        <input type="checkbox" id="chatToggle" checked>
+        <span class="slider round"></span>
+      </label>
+    </div>
+
+    <!-- Profile Toggle -->
+    <div class="setting-item">
+      <div class="setting-info">
+        <h3>Profile & History</h3>
+        <p>Hide stats on player profiles and past game history timelines.</p>
+      </div>
+      <label class="switch">
+        <input type="checkbox" id="profileToggle" checked>
+        <span class="slider round"></span>
+      </label>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>Refresh chess.com to reflect changes.</p>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
